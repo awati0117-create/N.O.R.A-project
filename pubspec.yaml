@@ -1,0 +1,36 @@
+name: nora_system
+description: "N.O.R.A. Cyber HUD & Multi-Brain Modular System"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # UI & Visuals
+  flutter_spinkit: ^5.2.1
+  google_fonts: ^6.1.0
+
+  # AI Engine Connectors
+  google_generative_ai: ^0.4.0
+  llama_cpp_dart: ^0.2.0
+
+  # Hardware Connectivity (ESP32 BLE & Wi-Fi)
+  flutter_reactive_ble: ^5.3.1
+  http: ^1.2.0
+
+  # Inter-App Integration & System Services
+  device_calendar: ^4.3.2
+  permission_handler: ^11.3.1
+  shared_preferences: ^2.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
