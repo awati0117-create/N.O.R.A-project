@@ -12,7 +12,6 @@ void main() {
 // MODULAR SLOTS & INTERACTION BRIDGES
 // ==========================================
 
-/// Slot Komunikasi Hardware (ESP32)
 abstract class EspBridgeSlot {
   Future<bool> connectBle(String deviceAddress);
   Future<bool> connectWifi(String ipAddress);
@@ -30,7 +29,6 @@ class EspHybridBridge implements EspBridgeSlot {
   Future<void> sendPayload(String command) async {}
 }
 
-/// Slot Integrasi Aplikasi Lain (Metro List, Kalender, Alarm)
 abstract class InterAppBridgeSlot {
   Future<List<String>> fetchTodayCalendarEvents();
   Future<void> setSystemAlarm(int hour, int minute, String title);
@@ -51,7 +49,6 @@ class AndroidInterAppBridge implements InterAppBridgeSlot {
 
   @override
   void listenMusicLyrics(Function(String song, String lyricLine) onLyric) {
-    // Mocking stream lirik dari Metro List
     Timer.periodic(const Duration(seconds: 4), (timer) {
       onLyric('Metro List Song', 'Baris lirik lagu sedang berjalan...');
     });
@@ -141,12 +138,9 @@ class MainHudDashboard extends StatefulWidget {
 
 class _MainHudDashboardState extends State<MainHudDashboard> {
   int _currentIndex = 0;
-
-  // Active Slots
   final EspBridgeSlot _espBridge = EspHybridBridge();
   final InterAppBridgeSlot _interApp = AndroidInterAppBridge();
 
-  // Dynamic Actions List
   List<QuickActionButton> _dynamicButtons = [
     QuickActionButton(id: '1', label: 'LAMPU UTAMA', espCommand: 'RELAY_1_TOGGLE', icon: Icons.lightbulb_outline),
     QuickActionButton(id: '2', label: 'KIPAS ANGIN', espCommand: 'FAN_TOGGLE', icon: Icons.air),
@@ -158,7 +152,6 @@ class _MainHudDashboardState extends State<MainHudDashboard> {
   ];
   final List<String> _logs = ['[SYSTEM_INIT] Modular Containers Online.'];
 
-  // Media Player State
   String _currentSong = 'Idle';
   String _currentLyric = 'Menunggu media player...';
 
@@ -323,7 +316,7 @@ class HoloChatHudTab extends StatelessWidget {
     return Column(
       children: [
         const SizedBox(height: 8),
-        // Arc Reactor Header
+        // N.O.R.A Custom Logo Header
         Center(
           child: Container(
             width: 60,
@@ -333,7 +326,12 @@ class HoloChatHudTab extends StatelessWidget {
               border: Border.all(color: holoColor, width: 2),
               boxShadow: [BoxShadow(color: holoColor.withOpacity(0.5), blurRadius: 12)],
             ),
-            child: Icon(Icons.graphic_eq, color: holoColor, size: 30),
+            child: ClipOval(
+              child: Image.asset(
+                'assets/1000192464.png',
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
         ),
         const SizedBox(height: 8),
