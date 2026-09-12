@@ -16,7 +16,7 @@ dependencies:
 
   # AI Engine Connectors
   google_generative_ai: ^0.4.0
-  llama_cpp_dart: ^0.2.0
+  llama_cpp_dart: ^0.0.7  # Versi disesuaikan agar cocok dengan Flutter SDK
 
   # Hardware Connectivity (ESP32 BLE & Wi-Fi)
   flutter_reactive_ble: ^5.3.1
